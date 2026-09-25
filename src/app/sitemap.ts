@@ -5,30 +5,50 @@ import { createSitemapEntry } from "@/shared/seo/sitemap-builders";
 /** Regenera el sitemap como máximo cada hora (catálogo externo). */
 export const revalidate = 3600;
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [products, categories] = await Promise.all([
-    productRepository.getAll(),
-    productRepository.getCategories(),
-  ]);
+function catalogOnlySitemap(): MetadataRoute.Sitemap {
+  return [
+    createSitemapEntry("/", { priority: 1, changeFrequency: "daily" }),
+    createSitemapEntry("/products", {
+      priority: 1,
+      changeFrequency: "daily",
+    }),
+  ];
+}
 
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const catalog = createSitemapEntry("/products", {
     priority: 1,
     changeFrequency: "daily",
   });
 
-  const categoryPages = categories.map((category) =>
-    createSitemapEntry(`/products?category=${encodeURIComponent(category)}`, {
-      priority: 0.8,
-      changeFrequency: "daily",
-    }),
-  );
+  try {
+    const [products, categories] = await Promise.all([
+      productRepository.getAll(),
+      productRepository.getCategories(),
+    ]);
 
-  const productPages = products.map((product) =>
-    createSitemapEntry(`/product/${product.id}`, {
-      priority: 0.7,
-      changeFrequency: "weekly",
-    }),
-  );
+    const categoryPages = categories.map((category) =>
+      createSitemapEntry(`/products?category=${encodeURIComponent(category)}`, {
+        priority: 0.8,
+        changeFrequency: "daily",
+      }),
+    );
 
-  return [catalog, ...categoryPages, ...productPages];
+    const productPages = products.map((product) =>
+      createSitemapEntry(`/product/${product.id}`, {
+        priority: 0.7,
+        changeFrequency: "weekly",
+      }),
+    );
+
+    return [
+      createSitemapEntry("/", { priority: 1, changeFrequency: "daily" }),
+      catalog,
+      ...categoryPages,
+      ...productPages,
+    ];
+  } catch {
+    // Fake Store API a veces responde 403 desde IPs de CI/CD (p. ej. Vercel build).
+    return catalogOnlySitemap();
+  }
 }
