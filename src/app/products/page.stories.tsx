@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
-import { expect, within } from "storybook/test";
+import { expect, waitFor, within } from "storybook/test";
 import { AsyncServerPagePreview } from "../../../.storybook/AsyncServerPagePreview";
 import ProductsPage from "./page";
 
@@ -37,9 +37,11 @@ export const Default: Story = {
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    await expect(
-      canvas.getByRole("heading", { name: /Catálogo de productos/i }),
-    ).toBeInTheDocument();
+    await waitFor(async () => {
+      await expect(
+        canvas.getByRole("heading", { name: /Catálogo de productos/i }),
+      ).toBeInTheDocument();
+    });
   },
 };
 
@@ -49,9 +51,11 @@ export const WithCategory: Story = {
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    await expect(canvas.getByText(/electronics/i)).toBeInTheDocument();
-    await expect(
-      canvas.getByRole("heading", { name: /Catálogo de productos/i }),
-    ).toBeInTheDocument();
+    await waitFor(async () => {
+      await expect(canvas.getByText(/electronics/i)).toBeInTheDocument();
+      await expect(
+        canvas.getByRole("heading", { name: /Catálogo de productos/i }),
+      ).toBeInTheDocument();
+    });
   },
 };

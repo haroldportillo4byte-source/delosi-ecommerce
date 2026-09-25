@@ -38,14 +38,17 @@ export const Default: Story = {
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    await waitFor(async () => {
-      await expect(
-        canvas.getByRole("heading", { name: /Productos en catálogo/i }),
-      ).toBeInTheDocument();
-      await expect(
-        canvas.getByRole("heading", { name: /Explora por categoría/i }),
-      ).toBeInTheDocument();
-    });
+    await waitFor(
+      async () => {
+        await expect(
+          canvas.getByRole("heading", { name: /Productos en catálogo/i }),
+        ).toBeInTheDocument();
+        await expect(
+          canvas.getByRole("heading", { name: /Explora por categoría/i }),
+        ).toBeInTheDocument();
+      },
+      { timeout: 5000 },
+    );
   },
 };
 

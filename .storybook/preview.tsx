@@ -1,4 +1,6 @@
+import { Suspense } from "react";
 import type { Preview } from "@storybook/nextjs-vite";
+import { CatalogFilterProvider } from "../src/modules/catalog/presentation/context/catalog-filter-context";
 import "../src/app/globals.css";
 
 const preview: Preview = {
@@ -14,6 +16,15 @@ const preview: Preview = {
       },
     },
   },
+  decorators: [
+    (Story) => (
+      <Suspense fallback={null}>
+        <CatalogFilterProvider>
+          <Story />
+        </CatalogFilterProvider>
+      </Suspense>
+    ),
+  ],
 };
 
 export default preview;
