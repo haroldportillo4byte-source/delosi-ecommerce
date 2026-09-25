@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { ProductImage } from "@/shared/ui/ProductImage";
 import { Minus, Plus, X } from "lucide-react";
 import { getCartSubtotal, getCartTotalItems } from "../../application/cart-totals";
 import { formatCartQuantityControlLabel } from "@/shared/a11y/labels";
@@ -57,7 +57,13 @@ export function CartSidebar() {
               {items.map((item) => (
                 <li key={item.productId} className="flex gap-3">
                   <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-lg bg-stone-100">
-                    <Image src={item.image} alt={item.title} fill className="object-contain p-1" />
+                    <ProductImage
+                      src={item.image}
+                      alt={item.title}
+                      fill
+                      sizes="64px"
+                      className="object-contain p-1"
+                    />
                   </div>
                   <div className="min-w-0 flex-1">
                     <p className="line-clamp-2 text-sm font-medium text-stone-900">{item.title}</p>

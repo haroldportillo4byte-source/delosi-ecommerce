@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
+import { ProductImage } from "@/shared/ui/ProductImage";
 import { Star } from "lucide-react";
 
 import type { Product } from "../../domain/entities/product";
@@ -23,12 +23,12 @@ export function ProductCard({ product, priority = false }: Props) {
         aria-label={`Ver ${product.title}, ${formatPrice(product.price)}`}
       >
         <div className="relative aspect-[4/3] overflow-hidden bg-stone-100">
-          <Image
+          <ProductImage
             src={product.image}
             alt={product.title}
             fill
+            priority={priority}
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
-            loading={priority ? "eager" : "lazy"}
             className="object-contain p-4 transition duration-300 group-hover:scale-105"
           />
 

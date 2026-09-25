@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { ProductImage } from "@/shared/ui/ProductImage";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Star } from "lucide-react";
@@ -61,7 +61,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
 
       <article className="grid gap-8 rounded-3xl bg-white p-4 shadow-sm ring-1 ring-stone-200 md:grid-cols-2 md:p-8">
         <div className="relative aspect-square overflow-hidden rounded-2xl bg-stone-50">
-          <Image
+          <ProductImage
             src={product.image}
             alt={product.title}
             fill
