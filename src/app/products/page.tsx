@@ -1,8 +1,9 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
 import { CatalogAsyncSection } from "@/modules/catalog/presentation/components/CatalogAsyncSection";
+import { CatalogProductsRegion } from "@/modules/catalog/presentation/components/CatalogProductsRegion";
+import { CatalogSectionSkeleton } from "@/modules/catalog/presentation/components/CatalogSectionSkeleton";
 import { FilterBadges } from "@/modules/catalog/presentation/components/FilterBadges";
-import { ProductGridSkeleton } from "@/modules/catalog/presentation/components/ProductGridSkeleton";
 import { parseProductQuery } from "@/modules/catalog/domain/value-objects/product-query";
 import { buildCatalogMetadata } from "@/shared/seo/metadata-builders";
 import { Breadcrumbs } from "@/shared/ui/molecules/Breadcrumbs";
@@ -41,15 +42,18 @@ export default async function ProductsPage({ searchParams }: PageProps) {
       </header>
 
       <section aria-label="Filtros del catálogo">
-        <Suspense fallback={<div className="h-16 animate-pulse rounded-xl bg-stone-200" aria-hidden="true" />}>
+        <Suspense
+          fallback={<div className="h-16 animate-pulse rounded-xl bg-stone-200" aria-hidden="true" />}
+        >
           <FilterBadges />
         </Suspense>
       </section>
 
-
-      <Suspense fallback={<ProductGridSkeleton />}>
-        <CatalogAsyncSection query={query} />
-      </Suspense>
+      <CatalogProductsRegion>
+        <Suspense key={JSON.stringify(query)} fallback={<CatalogSectionSkeleton />}>
+          <CatalogAsyncSection query={query} />
+        </Suspense>
+      </CatalogProductsRegion>
     </div>
   );
 }

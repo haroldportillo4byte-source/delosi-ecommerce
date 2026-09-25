@@ -3,7 +3,7 @@
 import { useId, useState } from "react";
 import { SlidersHorizontal } from "lucide-react";
 import type { ProductSort } from "../../domain/value-objects/product-query";
-import { useProductsFilter } from "../hooks/useProductsFilter";
+import { useCatalogFilter } from "../context/catalog-filter-context";
 import { Input } from "@/shared/ui/atoms/Input";
 
 const SORT_OPTIONS: { value: ProductSort; label: string }[] = [
@@ -35,7 +35,7 @@ export function FilterBadges() {
     currentPriceRange,
     isPending,
     updateParams,
-  } = useProductsFilter();
+  } = useCatalogFilter();
 
   const hasActiveFilters =
     Boolean(currentMinRating || currentPriceRange) || currentSort !== "relevance";
