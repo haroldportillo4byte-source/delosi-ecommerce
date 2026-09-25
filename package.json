@@ -1,0 +1,59 @@
+{
+  "name": "delosi-ecommerce",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@10.33.0",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "format": "prettier --write .",
+    "test": "vitest run --project=storybook",
+    "test:coverage": "vitest run --project=storybook --coverage",
+    "test:watch": "vitest --project=storybook",
+    "test:e2e": "playwright test",
+    "storybook": "storybook dev -p 6006 --no-open",
+    "build-storybook": "storybook build"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.12.0",
+    "lucide-react": "^1.48.0",
+    "next": "16.3.6",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "react-redux": "^9.3.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "@storybook/addon-docs": "^10.6.0",
+    "@storybook/addon-vitest": "^10.6.0",
+    "@storybook/nextjs-vite": "^10.6.0",
+    "@storybook/react": "^10.6.0",
+    "@tailwindcss/postcss": "^4",
+    "@testing-library/dom": "^10.4.2",
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.7",
+    "@types/node": "^22.20.4",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "^4.7.0",
+    "@vitest/browser-playwright": "^4.0.16",
+    "@vitest/coverage-v8": "4.0.16",
+    "babel-plugin-react-compiler": "1.0.0",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.6",
+    "eslint-config-prettier": "^10.1.8",
+    "jsdom": "^29.1.1",
+    "prettier": "^3.9.9",
+    "storybook": "^10.6.0",
+    "tailwindcss": "^4",
+    "typescript": "^5",
+    "vite": "^6.4.3",
+    "vitest": "^4.0.16"
+  }
+}
