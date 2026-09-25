@@ -4,7 +4,9 @@ import { Provider } from "react-redux";
 import { AddToCartButton } from "./AddToCartButton";
 import { HeaderCartCounter } from "./HeaderCartCounter";
 import { makeStore } from "@/shared/store";
-import { sampleProduct } from "@/test/fixtures/product";
+import { getCatalogSnapshotProducts } from "@/modules/catalog/infrastructure/data/catalog-fallback";
+
+const sampleProduct = getCatalogSnapshotProducts().find((p) => p.id === 1)!;
 
 const meta: Meta<typeof AddToCartButton> = {
   title: "Cart/AddToCartButton",

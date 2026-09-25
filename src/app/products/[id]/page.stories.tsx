@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { expect, waitFor, within } from "storybook/test";
 import { Providers } from "@/app/providers";
-import { sampleProduct } from "@/test/fixtures/product";
+import { getCatalogSnapshotProducts } from "@/modules/catalog/infrastructure/data/catalog-fallback";
 import { AsyncServerPagePreview } from "../../../../.storybook/AsyncServerPagePreview";
 import ProductDetailPage, { generateMetadata } from "./page";
 
@@ -48,7 +48,8 @@ export const MetadataFromProduct: Story = {
   args: { params: { id: "1" } },
   play: async () => {
     const metadata = await generateMetadata({ params: Promise.resolve({ id: "1" }) });
-    await expect(String(metadata.title)).toContain(sampleProduct.title);
+    const product = getCatalogSnapshotProducts().find((p) => p.id === 1)!;
+    await expect(String(metadata.title)).toContain(product.title);
   },
 };
 

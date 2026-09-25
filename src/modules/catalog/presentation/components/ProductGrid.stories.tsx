@@ -1,7 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { expect, within } from "storybook/test";
-import { sampleProduct } from "@/test/fixtures/product";
+import { getCatalogSnapshotProducts } from "../../infrastructure/data/catalog-fallback";
 import { ProductGrid } from "./ProductGrid";
+
+const sampleProduct = getCatalogSnapshotProducts().find((p) => p.id === 1)!;
 
 const meta: Meta<typeof ProductGrid> = {
   title: "Catalog/ProductGrid",

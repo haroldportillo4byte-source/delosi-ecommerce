@@ -1,36 +1,40 @@
 import { describe, expect, it } from "vitest";
-import { sampleProduct, cheapProduct } from "@/test/fixtures/product";
+import { getCatalogSnapshotProducts } from "../infrastructure/data/catalog-fallback";
 import { filterProducts } from "./filter-products";
 
 describe("filterProducts", () => {
-  const catalog = [sampleProduct, cheapProduct];
+  const snapshot = getCatalogSnapshotProducts();
+  const productA = snapshot.find((p) => p.id === 1)!;
+  const productB = snapshot.find((p) => p.id === 2)!;
+  const electronics = snapshot.find((p) => p.id === 9)!;
+  const catalog = [productA, electronics];
 
   it("filters by category case-insensitively", () => {
     const result = filterProducts(catalog, { category: "Electronics" });
     expect(result).toHaveLength(1);
-    expect(result[0]?.id).toBe(cheapProduct.id);
+    expect(result[0]?.id).toBe(electronics.id);
   });
 
   it("filters by search term in title or description", () => {
-    const result = filterProducts(catalog, { q: "backpack" });
+    const result = filterProducts([productA, productB], { q: "backpack" });
     expect(result).toHaveLength(1);
-    expect(result[0]?.id).toBe(sampleProduct.id);
+    expect(result[0]?.id).toBe(productA.id);
   });
 
   it("sorts by price ascending", () => {
-    const result = filterProducts(catalog, { sort: "price-asc" });
-    expect(result.map((p) => p.id)).toEqual([cheapProduct.id, sampleProduct.id]);
+    const result = filterProducts([productA, productB], { sort: "price-asc" });
+    expect(result.map((p) => p.id)).toEqual([productB.id, productA.id]);
   });
 
   it("sorts by price descending", () => {
-    const result = filterProducts(catalog, { sort: "price-desc" });
-    expect(result.map((p) => p.id)).toEqual([sampleProduct.id, cheapProduct.id]);
+    const result = filterProducts([productA, productB], { sort: "price-desc" });
+    expect(result.map((p) => p.id)).toEqual([productA.id, productB.id]);
   });
 
   it("filters by minimum rating", () => {
-    const rated = [{ ...cheapProduct, rating: { rate: 4.2, count: 10 } }, sampleProduct];
+    const rated = [{ ...productB, rating: { rate: 4.2, count: 10 } }, productA];
     const result = filterProducts(rated, { minRating: 4 });
     expect(result).toHaveLength(1);
-    expect(result[0]?.id).toBe(cheapProduct.id);
+    expect(result[0]?.id).toBe(productB.id);
   });
 });
