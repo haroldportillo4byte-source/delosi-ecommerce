@@ -93,12 +93,15 @@ El proyecto es **Next.js App Router** y Vercel lo detecta automáticamente. El g
 
 1. Sube el repositorio a GitHub (si aún no está en remoto).
 2. En [vercel.com/new](https://vercel.com/new), importa el repo `delosi-ecommerce`.
-3. Deja **Framework Preset: Next.js** y **Install Command: `pnpm install`** (Vercel suele inferirlo del lockfile).
-4. **Build Command:** `pnpm run build` (por defecto).
-5. Variables de entorno (opcional pero recomendado en producción):
+3. **Framework Preset: Next.js** (no Vite ni “Other”).
+4. **Output Directory:** vacío (no uses `dist`; Next.js publica desde `.next`).
+5. **Install Command:** `pnpm install` · **Build Command:** `pnpm run build`.
+6. Variables de entorno (opcional pero recomendado en producción):
    - `NEXT_PUBLIC_SITE_URL` = URL canónica del sitio, p. ej. `https://delosi-ecommerce.vercel.app` o tu dominio custom.
    - Si no la defines, `getSiteUrl()` usa `https://${VERCEL_URL}` en runtime de Vercel.
-6. Deploy.
+7. Deploy.
+
+Si ves *No Output Directory named "dist" found*, en **Settings → General → Build & Development Settings** pon **Framework Preset: Next.js** y borra **Output Directory**.
 
 ### Opción B — CLI
 
