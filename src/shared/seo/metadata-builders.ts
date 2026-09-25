@@ -26,7 +26,6 @@ type PageMetadataInput = {
   noIndex?: boolean;
 };
 
-/** Metadatos de página con Open Graph, Twitter y canonical reutilizables. */
 export function buildPageMetadata({
   title,
   description = SITE_DEFAULT_DESCRIPTION,
@@ -112,7 +111,7 @@ export function buildProductMetadata(product: Product): Metadata {
   return buildPageMetadata({
     title: product.title,
     description,
-    path: `/product/${product.id}`,
+    path: `/products/${product.id}`,
     image: product.image,
     imageAlt: product.title,
   });

@@ -76,6 +76,8 @@ export const Default: Story = {
       canvas.getByRole("heading", { name: "Contenido de ejemplo" }),
     ).toBeInTheDocument();
     await expect(canvas.getByRole("link", { name: "Delosi" })).toBeInTheDocument();
-    await expect(canvas.getByRole("button", { name: /carrito/i })).toBeInTheDocument();
+    await expect(
+      canvas.getByRole("button", { name: /Carrito con \d+ productos/i }),
+    ).toBeInTheDocument();
   },
 };

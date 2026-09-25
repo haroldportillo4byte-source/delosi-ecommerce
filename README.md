@@ -52,9 +52,9 @@ src/
 - **Búsqueda** (`?q=`) y **ordenamiento** (`?sort=price-asc|price-desc|relevance`).
 - Streaming con `Suspense` y skeletons.
 
-### PDP (`/product/[id]`)
+### PDP (`/products/[id]`)
 
-- Ruta dinámica `/product/[id]`.
+- Ruta dinámica `/products/[id]` (requerida por el reto). URLs antiguas `/product/:id` → redirect 308 en `next.config.ts`.
 - **`generateMetadata`** dinámico (title, description, Open Graph).
 - Botón **Agregar al carrito** con estado global Redux y contador en header.
 
@@ -80,7 +80,8 @@ pnpm build
 pnpm start
 pnpm lint
 pnpm format
-pnpm test            # Vitest
+pnpm test            # Vitest (unit + interacciones Storybook)
+pnpm test:unit       # Solo pruebas unitarias
 pnpm test:e2e        # Playwright (puerto 3010)
 pnpm storybook       # Historias co-ubicadas (*.stories.tsx)
 ```

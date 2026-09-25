@@ -10,8 +10,8 @@ test("catalog filters and add to cart update header badge", async ({ page }) => 
   await expect(page).toHaveURL(/category=electronics/);
 
   await page.locator("article a").first().click();
-  await expect(page).toHaveURL(/\/product\/\d+/);
+  await expect(page).toHaveURL(/\/products\/\d+/);
 
-  await page.getByRole("button", { name: "Agregar al carrito" }).click();
+  await page.getByRole("button", { name: /Agregar.*al carrito/i }).click();
   await expect(page.getByLabel(/Carrito con 1 productos/i)).toBeVisible();
 });

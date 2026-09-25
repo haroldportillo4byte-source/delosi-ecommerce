@@ -38,7 +38,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     );
 
     const productPages = products.map((product) =>
-      createSitemapEntry(`/product/${product.id}`, {
+      createSitemapEntry(`/products/${product.id}`, {
         priority: 0.7,
         changeFrequency: "weekly",
       }),

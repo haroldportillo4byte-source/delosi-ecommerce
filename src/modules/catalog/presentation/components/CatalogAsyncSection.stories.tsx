@@ -1,34 +1,51 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
-import { expect, within } from "storybook/test";
-import { CatalogAsyncSection } from "../../../../../.storybook/mocks/CatalogAsyncSection";
+import { expect, waitFor, within } from "storybook/test";
+import { AsyncServerPagePreview } from "../../../../../.storybook/AsyncServerPagePreview";
+import { CatalogAsyncSection } from "./CatalogAsyncSection";
+import type { ProductQuery } from "../../domain/value-objects/product-query";
 
-const meta: Meta<typeof CatalogAsyncSection> = {
+type StoryArgs = {
+  query: ProductQuery;
+};
+
+const meta = {
   title: "Catalog/CatalogAsyncSection",
-  component: CatalogAsyncSection,
   parameters: {
+    layout: "fullscreen",
     nextjs: { appDirectory: true },
     docs: {
       description: {
         component:
-          "En Storybook se usa un stub (ver `.storybook/mocks`). En Next.js el componente es async y carga datos reales.",
+          "En Storybook/Vitest el repositorio de catálogo usa datos de fallback (`.storybook/mocks/catalog.container.ts`). En producción consume Fake Store API.",
       },
     },
   },
-};
+  render: ({ query }: StoryArgs) => (
+    <AsyncServerPagePreview
+      key={JSON.stringify(query)}
+      load={CatalogAsyncSection}
+      pageProps={{ query }}
+    />
+  ),
+} satisfies Meta<StoryArgs>;
 
 export default meta;
-type Story = StoryObj<typeof CatalogAsyncSection>;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
     query: { sort: "relevance" },
   },
-  render: (args) => <CatalogAsyncSection {...args} />,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    await expect(
-      canvas.getByText(/Vista previa de Storybook: sección de catálogo simulada/i),
-    ).toBeInTheDocument();
+    await waitFor(async () => {
+      await expect(
+        canvas.getByRole("heading", { name: /Productos en catálogo/i }),
+      ).toBeInTheDocument();
+      await expect(
+        canvas.getByRole("heading", { name: /Explora por categoría/i }),
+      ).toBeInTheDocument();
+    });
   },
 };
 
@@ -36,9 +53,11 @@ export const WithCategory: Story = {
   args: {
     query: { sort: "relevance", category: "electronics" },
   },
-  render: (args) => <CatalogAsyncSection {...args} />,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    await expect(canvas.getByText(/sección de catálogo simulada/i)).toBeInTheDocument();
+    await waitFor(async () => {
+      await expect(canvas.getByRole("heading", { name: /Productos en catálogo/i })).toBeInTheDocument();
+    });
+    await expect(canvas.getByRole("link", { name: /electronics/i })).toBeInTheDocument();
   },
 };

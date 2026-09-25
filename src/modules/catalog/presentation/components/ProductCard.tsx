@@ -18,7 +18,7 @@ export function ProductCard({ product, priority = false }: Props) {
   return (
     <article className="group overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-stone-200 transition hover:-translate-y-0.5 hover:shadow-md">
       <Link
-        href={`/product/${product.id}`}
+        href={`/products/${product.id}`}
         className="block"
         aria-label={`Ver ${product.title}, ${formatPrice(product.price)}`}
       >

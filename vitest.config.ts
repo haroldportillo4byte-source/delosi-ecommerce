@@ -13,6 +13,14 @@ export default defineConfig({
     projects: [
       {
         extends: true,
+        test: {
+          name: "unit",
+          environment: "node",
+          include: ["src/**/*.unit.test.ts"],
+        },
+      },
+      {
+        extends: true,
         plugins: [
           storybookTest({
             configDir: path.join(dirname, ".storybook"),
@@ -43,10 +51,6 @@ export default defineConfig({
       "@/modules/catalog/infrastructure/di/catalog.container": path.resolve(
         dirname,
         ".storybook/mocks/catalog.container.ts",
-      ),
-      "@/modules/catalog/presentation/components/CatalogAsyncSection": path.resolve(
-        dirname,
-        ".storybook/mocks/CatalogAsyncSection.tsx",
       ),
     },
   },

@@ -61,7 +61,7 @@ export function buildProductJsonLd(product: Product) {
       price: product.price,
       priceCurrency: "USD",
       availability: "https://schema.org/InStock",
-      url: buildAbsoluteUrl(`/product/${product.id}`),
+      url: buildAbsoluteUrl(`/products/${product.id}`),
     },
     aggregateRating: {
       "@type": "AggregateRating",

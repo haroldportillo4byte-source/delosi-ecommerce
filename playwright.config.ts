@@ -13,7 +13,7 @@ export default defineConfig({
   },
   projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],
   webServer: {
-    command: "npm run dev -- --port 3010",
+    command: "pnpm exec next dev -p 3010",
     url: "http://127.0.0.1:3010",
     reuseExistingServer: false,
   },

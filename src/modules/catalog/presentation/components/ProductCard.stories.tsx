@@ -17,7 +17,7 @@ export const Default: Story = {
     const canvas = within(canvasElement);
     await expect(canvas.getByText(sampleProduct.title)).toBeInTheDocument();
     await expect(canvas.getByText(/Envío Gratis/i)).toBeInTheDocument();
-    await expect(canvas.getByRole("link")).toHaveAttribute("href", `/product/${sampleProduct.id}`);
+    await expect(canvas.getByRole("link")).toHaveAttribute("href", `/products/${sampleProduct.id}`);
   },
 };
 
@@ -27,6 +27,6 @@ export const PromoBadges: Story = {
     const canvas = within(canvasElement);
     await expect(canvas.getByText(cheapProduct.title)).toBeInTheDocument();
     await expect(canvas.getByText(/Hasta 30% Off/i)).toBeInTheDocument();
-    await expect(canvas.getByRole("link")).toHaveAttribute("href", `/product/${cheapProduct.id}`);
+    await expect(canvas.getByRole("link")).toHaveAttribute("href", `/products/${cheapProduct.id}`);
   },
 };

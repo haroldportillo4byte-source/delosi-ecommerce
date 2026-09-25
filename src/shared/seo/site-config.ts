@@ -5,7 +5,6 @@ export const SITE_DEFAULT_DESCRIPTION =
 
 export const SITE_LOCALE = "es_PE";
 
-/** URL pública del sitio (canonical, Open Graph, JSON-LD). */
 export function getSiteUrl(): string {
   const fromEnv = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "");
   if (fromEnv) return fromEnv;
