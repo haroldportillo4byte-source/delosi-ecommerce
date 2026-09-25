@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { buildProductNotFoundMetadata } from "@/shared/seo/metadata-builders";
-import { Button } from "@/shared/ui/Button";
+import { Button } from "@/shared/ui/atoms/Button";
 
 export const metadata: Metadata = buildProductNotFoundMetadata();
 

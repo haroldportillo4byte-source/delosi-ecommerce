@@ -5,7 +5,7 @@ import { SiteNavbar } from "./SiteNavbar";
 import { makeStore } from "@/shared/store";
 
 const meta: Meta<typeof SiteNavbar> = {
-  title: "Shared/SiteNavbar",
+  title: "Shared/Organisms/SiteNavbar",
   component: SiteNavbar,
   parameters: {
     layout: "fullscreen",

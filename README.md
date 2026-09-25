@@ -131,7 +131,11 @@ src/
 │       ├── infrastructure/      # Redux slice, localStorage
 │       └── presentation/        # Sidebar, botones, contador header
 └── shared/
-    ├── ui/                      # Componentes reutilizables (Button, Navbar…)
+    ├── ui/                      # Design system (Atomic Design)
+    │   ├── atoms/               # Button, Input, ProductImage
+    │   ├── molecules/           # Breadcrumbs
+    │   ├── organisms/           # SiteNavbar, SiteFooter, PromoBanner
+    │   └── index.ts             # Re-export opcional (@/shared/ui)
     ├── store/                   # configureStore + middleware persistencia
     ├── seo/                     # metadata-builders, json-ld, sitemap helpers
     └── a11y/                    # Skip link, labels accesibles

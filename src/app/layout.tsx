@@ -3,9 +3,7 @@ import { SkipToContent } from "@/shared/a11y/SkipToContent";
 import { buildRootMetadata } from "@/shared/seo/metadata-builders";
 import { JsonLd, buildWebSiteJsonLd } from "@/shared/seo/json-ld";
 import { Providers } from "./providers";
-import { PromoBanner } from "@/shared/ui/PromoBanner";
-import { SiteFooter } from "@/shared/ui/SiteFooter";
-import { SiteNavbar } from "@/shared/ui/SiteNavbar";
+import { PromoBanner, SiteFooter, SiteNavbar } from "@/shared/ui";
 import "./globals.css";
 import { CartSidebar } from "@/modules/cart/presentation/components/CartSidebar";
 

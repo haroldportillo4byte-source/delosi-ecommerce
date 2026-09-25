@@ -5,7 +5,7 @@ import { FilterBadges } from "@/modules/catalog/presentation/components/FilterBa
 import { ProductGridSkeleton } from "@/modules/catalog/presentation/components/ProductGridSkeleton";
 import { parseProductQuery } from "@/modules/catalog/domain/value-objects/product-query";
 import { buildCatalogMetadata } from "@/shared/seo/metadata-builders";
-import { Breadcrumbs } from "@/shared/ui/Breadcrumbs";
+import { Breadcrumbs } from "@/shared/ui/molecules/Breadcrumbs";
 
 type PageProps = {
   searchParams: Promise<Record<string, string | string[] | undefined>>;

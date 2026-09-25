@@ -3,7 +3,7 @@ import { expect, within } from "storybook/test";
 import { SiteFooter } from "./SiteFooter";
 
 const meta: Meta<typeof SiteFooter> = {
-  title: "Shared/SiteFooter",
+  title: "Shared/Organisms/SiteFooter",
   component: SiteFooter,
 };
 

@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import Link from "next/link";
-import { Button } from "@/shared/ui/Button";
+import { Button } from "@/shared/ui/atoms/Button";
 
 export default function ProductsError({
   error,

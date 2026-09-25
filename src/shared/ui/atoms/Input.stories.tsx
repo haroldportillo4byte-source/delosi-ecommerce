@@ -3,7 +3,7 @@ import { expect, userEvent, within } from "storybook/test";
 import { Input } from "./Input";
 
 const meta: Meta<typeof Input> = {
-  title: "Shared/Input",
+  title: "Shared/Atoms/Input",
   component: Input,
 };
 

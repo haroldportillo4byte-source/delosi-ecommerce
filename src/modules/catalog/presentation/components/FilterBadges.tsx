@@ -4,7 +4,7 @@ import { useId, useState } from "react";
 import { SlidersHorizontal } from "lucide-react";
 import type { ProductSort } from "../../domain/value-objects/product-query";
 import { useProductsFilter } from "../hooks/useProductsFilter";
-import { Input } from "@/shared/ui/Input";
+import { Input } from "@/shared/ui/atoms/Input";
 
 const SORT_OPTIONS: { value: ProductSort; label: string }[] = [
   { value: "relevance", label: "Relevancia" },

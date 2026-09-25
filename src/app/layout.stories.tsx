@@ -4,9 +4,7 @@ import { expect, within } from "storybook/test";
 import RootLayout from "@/app/layout";
 import { Providers } from "@/app/providers";
 import { CartSidebar } from "@/modules/cart/presentation/components/CartSidebar";
-import { PromoBanner } from "@/shared/ui/PromoBanner";
-import { SiteFooter } from "@/shared/ui/SiteFooter";
-import { SiteNavbar } from "@/shared/ui/SiteNavbar";
+import { PromoBanner, SiteFooter, SiteNavbar } from "@/shared/ui";
 
 const meta = {
   title: "Layout/AppShell",

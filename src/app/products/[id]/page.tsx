@@ -1,4 +1,4 @@
-import { ProductImage } from "@/shared/ui/ProductImage";
+import { ProductImage } from "@/shared/ui/atoms/ProductImage";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Star } from "lucide-react";
@@ -14,7 +14,7 @@ import {
   buildBreadcrumbListJsonLd,
   buildProductJsonLd,
 } from "@/shared/seo/json-ld";
-import { Breadcrumbs } from "@/shared/ui/Breadcrumbs";
+import { Breadcrumbs } from "@/shared/ui/molecules/Breadcrumbs";
 import { formatPrice } from "@/shared/utils/formatPrice";
 
 type PageProps = {

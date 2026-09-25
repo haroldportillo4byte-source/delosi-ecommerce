@@ -4,7 +4,7 @@ import { ShoppingCart } from "lucide-react";
 import { addToCart } from "../../infrastructure/store/cart.slice";
 import { useAppDispatch } from "@/shared/store/hooks";
 import type { Product } from "@/modules/catalog/domain/entities/product";
-import { Button } from "@/shared/ui/Button";
+import { Button } from "@/shared/ui/atoms/Button";
 
 type Props = {
   product: Pick<Product, "id" | "title" | "price" | "image">;

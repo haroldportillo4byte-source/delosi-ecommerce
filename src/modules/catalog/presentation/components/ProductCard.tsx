@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ProductImage } from "@/shared/ui/ProductImage";
+import { ProductImage } from "@/shared/ui/atoms/ProductImage";
 import { Star } from "lucide-react";
 
 import type { Product } from "../../domain/entities/product";

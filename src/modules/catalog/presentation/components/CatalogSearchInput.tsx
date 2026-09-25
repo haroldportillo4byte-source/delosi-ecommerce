@@ -1,7 +1,7 @@
 "use client";
 
 import { Search } from "lucide-react";
-import { Input } from "@/shared/ui/Input";
+import { Input } from "@/shared/ui/atoms/Input";
 import { useProductsFilter } from "../hooks/useProductsFilter";
 
 type Props = {

@@ -1,6 +1,6 @@
 "use client";
 
-import { ProductImage } from "@/shared/ui/ProductImage";
+import { ProductImage } from "@/shared/ui/atoms/ProductImage";
 import { Minus, Plus, X } from "lucide-react";
 import { getCartSubtotal, getCartTotalItems } from "../../application/cart-totals";
 import { formatCartQuantityControlLabel } from "@/shared/a11y/labels";
@@ -11,7 +11,7 @@ import {
 } from "../../infrastructure/store/cart.slice";
 import { useAppDispatch, useAppSelector } from "@/shared/store/hooks";
 import { formatPrice } from "@/shared/utils/formatPrice";
-import { Button } from "@/shared/ui/Button";
+import { Button } from "@/shared/ui/atoms/Button";
 
 export function CartSidebar() {
   const dispatch = useAppDispatch();
