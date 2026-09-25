@@ -80,10 +80,10 @@ export default async function ProductDetailPage({ params }: PageProps) {
               <span className="sr-only">Precio: </span>
               {formatPrice(product.price)}
             </p>
-            <p
-              className="flex items-center gap-1 text-sm text-stone-600"
-              aria-label={formatProductRatingLabel(product.rating.rate, product.rating.count)}
-            >
+            <p className="flex items-center gap-1 text-sm text-stone-600">
+              <span className="sr-only">
+                {formatProductRatingLabel(product.rating.rate, product.rating.count)}
+              </span>
               <Star className="h-4 w-4 fill-amber-400 text-amber-400" aria-hidden="true" />
               <span aria-hidden="true">
                 {product.rating.rate.toFixed(1)} ({product.rating.count} reseñas)

@@ -57,10 +57,10 @@ export function ProductCard({ product, priority = false }: Props) {
               {formatPrice(product.price)}
             </p>
 
-            <p
-              className="flex items-center gap-1 text-xs text-stone-500"
-              aria-label={formatProductRatingLabel(product.rating.rate, product.rating.count)}
-            >
+            <p className="flex items-center gap-1 text-xs text-stone-600">
+              <span className="sr-only">
+                {formatProductRatingLabel(product.rating.rate, product.rating.count)}
+              </span>
               <Star
                 aria-hidden="true"
                 className="h-3.5 w-3.5 fill-amber-400 text-amber-400"

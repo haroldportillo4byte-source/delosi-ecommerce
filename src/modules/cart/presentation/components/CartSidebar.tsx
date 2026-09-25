@@ -32,10 +32,10 @@ export function CartSidebar() {
         className={`fixed top-0 right-0 z-[70] flex h-full w-full max-w-md flex-col bg-white shadow-xl transition-transform ${
           isSidebarOpen ? "translate-x-0" : "translate-x-full"
         }`}
-        role="dialog"
-        aria-modal={isSidebarOpen}
-        aria-hidden={!isSidebarOpen}
+        role={isSidebarOpen ? "dialog" : undefined}
+        aria-modal={isSidebarOpen ? true : undefined}
         aria-label="Carrito de compras"
+        inert={!isSidebarOpen ? true : undefined}
       >
         <div className="flex items-center justify-between border-b border-stone-200 px-4 py-4">
           <h2 className="text-lg font-bold text-stone-900">Tu carrito ({totalItems})</h2>
@@ -77,10 +77,8 @@ export function CartSidebar() {
                       >
                         <Minus className="h-4 w-4" aria-hidden="true" />
                       </button>
-                      <span
-                        className="min-w-6 text-center text-sm font-semibold text-stone-900"
-                        aria-label={`Cantidad: ${item.quantity}`}
-                      >
+                      <span className="min-w-6 text-center text-sm font-semibold text-stone-900">
+                        <span className="sr-only">Cantidad: </span>
                         {item.quantity}
                       </span>
                       <button
