@@ -2,8 +2,11 @@ import type { MetadataRoute } from "next";
 import { productRepository } from "@/modules/catalog/infrastructure/di/catalog.container";
 import { createSitemapEntry } from "@/shared/seo/sitemap-builders";
 
-/** Regenera el sitemap como máximo cada hora (catálogo externo). */
-export const revalidate = 3600;
+/**
+ * No prerenderizar en build: Fake Store API suele devolver 403 desde IPs de CI (Vercel).
+ * El sitemap se genera en runtime; el catálogo se cachea vía `revalidate` en fetch.
+ */
+export const dynamic = "force-dynamic";
 
 function catalogOnlySitemap(): MetadataRoute.Sitemap {
   return [
