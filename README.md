@@ -8,10 +8,10 @@ Aplicación modular de catálogo y detalle de producto con **Next.js (App Router
 
 ### Requisitos previos
 
-| Herramienta | Versión |
-|-------------|---------|
-| **Node.js** | ≥ 20 (ver `engines` en `package.json`) |
-| **pnpm** | ≥ 10 (recomendado; el repo usa `pnpm-lock.yaml`) |
+| Herramienta | Versión                                          |
+| ----------- | ------------------------------------------------ |
+| **Node.js** | ≥ 20 (ver `engines` en `package.json`)           |
+| **pnpm**    | ≥ 10 (recomendado; el repo usa `pnpm-lock.yaml`) |
 
 Comprobar:
 
@@ -59,12 +59,12 @@ Si no tienes pnpm: `corepack enable` y `corepack prepare pnpm@10.33.0 --activate
 
 ### Rutas principales
 
-| Ruta | Descripción |
-|------|-------------|
-| `/` | Redirige a `/products` |
-| `/products` | Catálogo (PLP) con filtros en URL |
-| `/products/[id]` | Detalle de producto (PDP) |
-| `/product/[id]` | Redirect 308 → `/products/[id]` |
+| Ruta             | Descripción                       |
+| ---------------- | --------------------------------- |
+| `/`              | Redirige a `/products`            |
+| `/products`      | Catálogo (PLP) con filtros en URL |
+| `/products/[id]` | Detalle de producto (PDP)         |
+| `/product/[id]`  | Redirect 308 → `/products/[id]`   |
 
 **Query params del catálogo (ejemplos):**
 
@@ -82,7 +82,10 @@ pnpm test              # Vitest: unit (*.unit.test.ts) + stories con play
 pnpm test:unit         # Solo pruebas unitarias
 pnpm test:e2e          # Playwright (levanta Next en puerto 3010)
 pnpm storybook         # UI aislada en http://localhost:6006
+pnpm validate          # ESLint + Prettier en todo el repo (manual / CI)
 ```
+
+**Git hooks (Husky):** `pnpm install` ejecuta `prepare` y activa Husky. En cada commit, `.husky/pre-commit` corre **lint-staged** (ESLint y Prettier en archivos staged). No se ejecutan tests en el hook.
 
 **Nota E2E:** la primera ejecución de `pnpm test:e2e` puede descargar el browser de Playwright. Los tests usan la API real de Fake Store; hace falta conexión a internet.
 
@@ -100,19 +103,19 @@ Documento de referencia para revisión de código y sustentación: convenciones,
 
 ### 1. Stack y responsabilidades
 
-| Área | Elección | Motivo breve |
-|------|----------|--------------|
-| Framework | Next.js 16 App Router | SSR/SSG, Server Components, Metadata API |
-| Lenguaje | TypeScript `strict` | Contratos en dominio y props |
-| UI | React 19 | Alineado con Next 16 |
-| Estilos | Tailwind CSS v4 | Utilidades, diseño responsive |
-| Estado global | Redux Toolkit (solo carrito) | Acciones predecibles + DevTools |
-| Persistencia carrito | `localStorage` + middleware | Recarga sin perder ítems |
-| Datos catálogo | Server Components + `fetch` | HTML inicial con productos; SEO |
-| Imágenes | `next/image` + dominios en config | Optimización y LCP |
-| SEO | `generateMetadata`, JSON-LD, sitemap | Título, description, OG por página |
-| Tests | Vitest + Storybook (play) + Playwright | Unit, UI integrada, flujos E2E |
-| Calidad | ESLint (Next) + Prettier | Estilo consistente |
+| Área                 | Elección                               | Motivo breve                             |
+| -------------------- | -------------------------------------- | ---------------------------------------- |
+| Framework            | Next.js 16 App Router                  | SSR/SSG, Server Components, Metadata API |
+| Lenguaje             | TypeScript `strict`                    | Contratos en dominio y props             |
+| UI                   | React 19                               | Alineado con Next 16                     |
+| Estilos              | Tailwind CSS v4                        | Utilidades, diseño responsive            |
+| Estado global        | Redux Toolkit (solo carrito)           | Acciones predecibles + DevTools          |
+| Persistencia carrito | `localStorage` + middleware            | Recarga sin perder ítems                 |
+| Datos catálogo       | Server Components + `fetch`            | HTML inicial con productos; SEO          |
+| Imágenes             | `next/image` + dominios en config      | Optimización y LCP                       |
+| SEO                  | `generateMetadata`, JSON-LD, sitemap   | Título, description, OG por página       |
+| Tests                | Vitest + Storybook (play) + Playwright | Unit, UI integrada, flujos E2E           |
+| Calidad              | ESLint (Next) + Prettier               | Estilo consistente                       |
 
 ### 2. Arquitectura por módulos (Clean Architecture / SOLID)
 
@@ -188,11 +191,11 @@ Cliente: `fakestore-api.client.ts` con `next.revalidate: 3600`. Si la red falla 
 
 ### 7. Testing
 
-| Tipo | Ubicación | Comando |
-|------|-----------|---------|
-| Unit | `*.unit.test.ts` | `pnpm test:unit` |
+| Tipo                    | Ubicación                  | Comando                          |
+| ----------------------- | -------------------------- | -------------------------------- |
+| Unit                    | `*.unit.test.ts`           | `pnpm test:unit`                 |
 | UI / integración ligera | `*.stories.tsx` con `play` | `pnpm test` (proyecto storybook) |
-| E2E | `e2e/*.spec.ts` | `pnpm test:e2e` |
+| E2E                     | `e2e/*.spec.ts`            | `pnpm test:e2e`                  |
 
 En Storybook/Vitest, el catálogo usa mock en `.storybook/mocks/catalog.container.ts` (datos de fallback, sin depender de la API en CI).
 
@@ -201,7 +204,7 @@ En Storybook/Vitest, el catálogo usa mock en `.storybook/mocks/catalog.containe
 - Alias de imports: `@/` → `src/`.
 - Componentes de presentación en PascalCase; casos de uso con sufijo `UseCase`.
 - Estilos con Tailwind; evitar CSS global salvo tokens en `globals.css`.
-- Commits y formato: Prettier; lint antes de PR (`pnpm lint`).
+- Commits: pre-commit con lint-staged (ESLint + Prettier en staged); `pnpm validate` antes de PR.
 
 ---
 
